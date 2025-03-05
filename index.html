@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Hangman</title>
+        <style>
+            div,h1,span,p {
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            body {
+                display: flex;
+                flex-direction: column;
+                background-color: rgb(80, 75, 76);
+            }
+
+            h1 {
+                text-align: center;
+            }
+
+            .illustration {
+                margin-left: 40%;
+            }
+
+            .stick {
+                position: relative;
+                width: 600px;
+                height: 700px;
+            }
+
+            .platform, .person {
+                position: absolute;
+            }
+
+            .platform {
+                width: 350px;
+                height: 700px;
+            }
+
+            .person div {
+                background-color: black;
+                position: absolute;
+            }
+
+            .platform div {
+                position: absolute;
+            }
+
+            .base {
+                width: 300px;
+                height: 10px;
+                bottom: 0%;
+                left: -15%;
+                background-color: black;
+            }
+
+            .pole {
+                width: 10px;
+                height: 700px;
+                background-color: black;
+            }
+
+            .overhang {
+                width: 350px;
+                height: 10px ;
+                background-color: black;
+            }
+
+            .extension {
+                width: 7px;
+                height: 175px;
+                right: 0%;
+                background-color: rgb(151, 112, 76);
+            }
+
+            .person {
+                width: 300px;
+                height: 500px;
+                top: 13%;
+                right: -6.7%;
+            }
+
+            .head {
+                width: 100px;
+                height: 100px;
+                border-radius: 100%;
+                background-color: transparent !important;
+                border: 10px solid black;
+                left: 0.2;
+            }
+
+            .arm, .foot {
+                width: 10px;
+                height: 200px;
+            }
+
+            .arm-1, .foot-1 {
+                transform: rotate(4deg);
+                top: 16%;
+                left: -1%;
+            }
+
+            .arm-2, .foot-2 {
+                transform: rotate(-4deg);
+                top: 16%;
+                left: 3%;
+            }
+
+            .torso {
+                width: 10px;
+                height: 200px;
+                top: 17%;
+                left: 1%;
+            }
+
+            .foot-1, .foot-2 {
+                top: 55%;
+            }
+
+            .word, .score {
+                display: flex;
+                justify-content: center;
+                margin-top: 30px;
+                gap: 5px;
+            }
+
+            .letter {
+                width: 100px;
+                font-size: 50px;
+            }
+
+            .score {
+                font-size: 30px;
+                color: white;
+            }
+
+            .answer {
+                display: flex;
+                justify-content: center;
+                margin-top: 50px;
+            }
+
+            button {
+                width: 200px;
+                height: 80px;
+                font-size: 20px;
+                color: white;
+                background-color: rgb(133, 40, 40);
+                border-radius: 20px;
+            }
+
+            .head, .arm, .torso, .foot {
+                display: none;
+            }
+
+            h1 {
+                color: white;
+            }
+
+        </style>
+        <script src="script.js"></script>
+	</head>
+	<body onload="gameSetup()">
+        <h1>Hangman</h1>
+
+        <div class="illustration">
+            <div class="stick">
+                <div class="platform">
+                    <div class="base"></div>
+                    <div class="pole"></div>
+                    <div class="overhang"></div>
+                    <div class="extension"></div>
+                </div>
+                <div class="person">
+                    <div id="head" class="head"></div>
+                    <div id="arm-1" class="arm-1 arm"></div>
+                    <div id="arm-2" class="arm-2 arm"></div>
+                    <div id="torso" class="torso"></div>
+                    <div id="foot-1" class="foot-1 foot"></div>
+                    <div id="foot-2" class="foot-2 foot"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="word">
+            <div class="letter" id="s-0">_</div>
+            <div class="letter" id="s-1">_</div>
+            <div class="letter" id="s-2">_</div>
+            <div class="letter" id="s-3">_</div>
+            <div class="letter" id="s-4">_</div>
+        </div>
+        <div class="score">
+            <div>Lives: </div>
+            <div id="lives"></div>
+        </div>
+
+        <div class="answer">
+            <button onclick="playHangman()">Enter a letter</button>
+        </div>
+    </body>
+</html>
